@@ -1,0 +1,32 @@
+
+
+service: service-1
+
+
+provider:
+  name: aws
+  stage: dev
+  runtime: nodejs12.x
+
+
+functions:
+  hello:
+    handler: handler.hello
+    
+ 
+  test:
+    handler: handler.test
+    name: test
+    vpc:
+      securityGroupIds:
+        - sg-09311ef30f00ca353
+      subnetdIds:
+        - subnet-01f7ac8f8764614c9 
+        - subnet-07468a37b640608a4 
+        - subnet-08bb60fa4c3ba5cdd
+        - subnet-03f19fa159c5fdc95
+    events:
+      - http:
+          path: /test
+          method: get
+          cors: true
